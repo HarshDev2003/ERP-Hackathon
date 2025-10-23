@@ -45,13 +45,14 @@ const ShowStudents = () => {
     const deleteHandler = (deleteID, address) => {
         console.log(deleteID);
         console.log(address);
-        setMessage("Sorry the delete function has been disabled for now.")
-        setShowPopup(true)
-
-        // dispatch(deleteUser(deleteID, address))
-        //     .then(() => {
-        //         dispatch(getAllStudents(currentUser._id));
-        //     })
+       
+        const confirmDelete = window.confirm("Are you sure you want to delete this?");
+        if (confirmDelete) {
+            dispatch(deleteUser(deleteID, address))
+                .then(() => {
+                    dispatch(getAllStudents(currentUser._id));
+                });
+        }
     }
 
     const studentColumns = [

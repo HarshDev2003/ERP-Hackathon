@@ -96,7 +96,7 @@ const deleteStudent = async (req, res) => {
         const result = await Student.findByIdAndDelete(req.params.id)
         res.send(result)
     } catch (error) {
-        res.status(500).json(err);
+        res.status(500).json(error);
     }
 }
 
@@ -109,7 +109,7 @@ const deleteStudents = async (req, res) => {
             res.send(result)
         }
     } catch (error) {
-        res.status(500).json(err);
+        res.status(500).json(error);
     }
 }
 
@@ -122,7 +122,7 @@ const deleteStudentsByClass = async (req, res) => {
             res.send(result)
         }
     } catch (error) {
-        res.status(500).json(err);
+        res.status(500).json(error);
     }
 }
 
