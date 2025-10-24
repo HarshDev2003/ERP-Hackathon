@@ -33,6 +33,8 @@ export const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== 'open',
 })(({ theme, open }) => ({
     zIndex: theme.zIndex.drawer + 1,
+    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+    boxShadow: '0 4px 12px rgba(102, 126, 234, 0.2)',
     transition: theme.transitions.create(['width', 'margin'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -53,6 +55,8 @@ export const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 
             position: 'relative',
             whiteSpace: 'nowrap',
             width: drawerWidth,
+            borderRight: '1px solid #f0f0f0',
+            boxShadow: '2px 0 8px rgba(0,0,0,0.04)',
             transition: theme.transitions.create('width', {
                 easing: theme.transitions.easing.sharp,
                 duration: theme.transitions.duration.enteringScreen,

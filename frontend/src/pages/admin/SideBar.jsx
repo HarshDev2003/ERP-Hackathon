@@ -21,13 +21,33 @@ const SideBar = () => {
     return (
         <>
             <React.Fragment>
-                <ListItemButton component={Link} to="/">
+                <ListItemButton 
+                    component={Link} 
+                    to="/"
+                    sx={{
+                        mb: 0.5,
+                        borderRadius: 2,
+                        '&:hover': {
+                            backgroundColor: 'rgba(103, 126, 234, 0.08)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
                         <HomeIcon color={location.pathname === ("/" || "/Admin/dashboard") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/classes">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/classes"
+                    sx={{
+                        mb: 0.5,
+                        borderRadius: 2,
+                        '&:hover': {
+                            backgroundColor: 'rgba(103, 126, 234, 0.08)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
                         <ClassOutlinedIcon color={location.pathname.startsWith('/Admin/classes') ? 'primary' : 'inherit'} />
                     </ListItemIcon>
