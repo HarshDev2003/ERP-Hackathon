@@ -5,6 +5,10 @@ import { noticeReducer } from './noticeRelated/noticeSlice';
 import { sclassReducer } from './sclassRelated/sclassSlice';
 import { teacherReducer } from './teacherRelated/teacherSlice';
 import { complainReducer } from './complainRelated/complainSlice';
+import { admissionReducer } from './admissionRelated/admissionSlice';
+import { feeReducer } from './feeRelated/feeSlice';
+import { hostelReducer } from './hostelRelated/hostelSlice';
+import { examReducer } from './examRelated/examSlice';
 
 const store = configureStore({
     reducer: {
@@ -13,7 +17,11 @@ const store = configureStore({
         teacher: teacherReducer,
         notice: noticeReducer,
         complain: complainReducer,
-        sclass: sclassReducer
+        sclass: sclassReducer,
+        admission: admissionReducer,
+        fee: feeReducer,
+        hostel: hostelReducer,
+        exam: examReducer
     },
 });
 

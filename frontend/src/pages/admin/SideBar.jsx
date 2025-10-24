@@ -11,6 +11,10 @@ import ClassOutlinedIcon from '@mui/icons-material/ClassOutlined';
 import SupervisorAccountOutlinedIcon from '@mui/icons-material/SupervisorAccountOutlined';
 import ReportIcon from '@mui/icons-material/Report';
 import AssignmentIcon from '@mui/icons-material/Assignment';
+import SchoolIcon from '@mui/icons-material/School';
+import PaymentIcon from '@mui/icons-material/Payment';
+import HotelIcon from '@mui/icons-material/Hotel';
+import QuizIcon from '@mui/icons-material/Quiz';
 
 const SideBar = () => {
     const location = useLocation();
@@ -58,6 +62,36 @@ const SideBar = () => {
                         <ReportIcon color={location.pathname.startsWith("/Admin/complains") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Complains" />
+                </ListItemButton>
+            </React.Fragment>
+            <Divider sx={{ my: 1 }} />
+            <React.Fragment>
+                <ListSubheader component="div" inset>
+                    Management
+                </ListSubheader>
+                <ListItemButton component={Link} to="/Admin/admissions">
+                    <ListItemIcon>
+                        <SchoolIcon color={location.pathname.startsWith('/Admin/admissions') ? 'primary' : 'inherit'} />
+                    </ListItemIcon>
+                    <ListItemText primary="Admissions" />
+                </ListItemButton>
+                <ListItemButton component={Link} to="/Admin/fees">
+                    <ListItemIcon>
+                        <PaymentIcon color={location.pathname.startsWith('/Admin/fees') ? 'primary' : 'inherit'} />
+                    </ListItemIcon>
+                    <ListItemText primary="Fee Management" />
+                </ListItemButton>
+                <ListItemButton component={Link} to="/Admin/hostels">
+                    <ListItemIcon>
+                        <HotelIcon color={location.pathname.startsWith('/Admin/hostels') ? 'primary' : 'inherit'} />
+                    </ListItemIcon>
+                    <ListItemText primary="Hostel" />
+                </ListItemButton>
+                <ListItemButton component={Link} to="/Admin/exams">
+                    <ListItemIcon>
+                        <QuizIcon color={location.pathname.startsWith('/Admin/exams') ? 'primary' : 'inherit'} />
+                    </ListItemIcon>
+                    <ListItemText primary="Exams" />
                 </ListItemButton>
             </React.Fragment>
             <Divider sx={{ my: 1 }} />

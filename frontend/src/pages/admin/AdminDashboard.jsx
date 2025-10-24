@@ -40,6 +40,20 @@ import TeacherDetails from './teacherRelated/TeacherDetails';
 import AddClass from './classRelated/AddClass';
 import ClassDetails from './classRelated/ClassDetails';
 import ShowClasses from './classRelated/ShowClasses';
+
+import ShowAdmissions from './admissionRelated/ShowAdmissions';
+import AddAdmission from './admissionRelated/AddAdmission';
+import ViewAdmission from './admissionRelated/ViewAdmission';
+
+import ShowFees from './feeRelated/ShowFees';
+import AddFee from './feeRelated/AddFee';
+
+import ShowHostels from './hostelRelated/ShowHostels';
+import AddHostel from './hostelRelated/AddHostel';
+
+import ShowExams from './examRelated/ShowExams';
+import AddExam from './examRelated/AddExam';
+
 import AccountMenu from '../../components/AccountMenu';
 
 const AdminDashboard = () => {
@@ -133,6 +147,23 @@ const AdminDashboard = () => {
                         <Route path="/Admin/teachers/choosesubject/:id" element={<ChooseSubject situation="Norm" />} />
                         <Route path="/Admin/teachers/choosesubject/:classID/:teacherID" element={<ChooseSubject situation="Teacher" />} />
                         <Route path="/Admin/teachers/addteacher/:id" element={<AddTeacher />} />
+
+                        {/* Admissions */}
+                        <Route path="/Admin/admissions" element={<ShowAdmissions />} />
+                        <Route path="/Admin/admissions/add" element={<AddAdmission />} />
+                        <Route path="/Admin/admissions/admission/:id" element={<ViewAdmission />} />
+
+                        {/* Fee Management */}
+                        <Route path="/Admin/fees" element={<ShowFees />} />
+                        <Route path="/Admin/fees/add" element={<AddFee />} />
+
+                        {/* Hostel */}
+                        <Route path="/Admin/hostels" element={<ShowHostels />} />
+                        <Route path="/Admin/hostels/add" element={<AddHostel />} />
+
+                        {/* Exams */}
+                        <Route path="/Admin/exams" element={<ShowExams />} />
+                        <Route path="/Admin/exams/add" element={<AddExam />} />
 
                         <Route path="/logout" element={<Logout />} />
                     </Routes>
