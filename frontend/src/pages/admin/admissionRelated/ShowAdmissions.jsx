@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { Paper, Box, IconButton, Chip } from '@mui/material';
+import { Box, IconButton, Chip, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { BlueButton, GreenButton } from '../../../components/buttonStyles';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { GreenButton } from '../../../components/buttonStyles';
 import TableTemplate from '../../../components/TableTemplate';
+import PageContainer from '../../../components/PageContainer';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import SpeedDialTemplate from '../../../components/SpeedDialTemplate';
 import axios from 'axios';
@@ -94,15 +96,29 @@ const ShowAdmissions = () => {
 
     const AdmissionButtonHaver = ({ row }) => {
         return (
-            <>
-                <IconButton onClick={() => deleteHandler(row.id)}>
-                    <DeleteIcon color="error" />
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <IconButton 
+                    onClick={() => navigate("/Admin/admissions/admission/" + row.id)}
+                    size="small"
+                    sx={{
+                        color: '#8b5cf6',
+                        '&:hover': { backgroundColor: 'rgba(139, 92, 246, 0.1)' }
+                    }}
+                >
+                    <VisibilityIcon fontSize="small" />
                 </IconButton>
-                <BlueButton variant="contained"
-                    onClick={() => navigate("/Admin/admissions/admission/" + row.id)}>
-                    View
-                </BlueButton>
-            </>
+                
+                <IconButton 
+                    onClick={() => deleteHandler(row.id)}
+                    size="small"
+                    sx={{
+                        color: '#ef4444',
+                        '&:hover': { backgroundColor: 'rgba(239, 68, 68, 0.1)' }
+                    }}
+                >
+                    <DeleteIcon fontSize="small" />
+                </IconButton>
+            </Box>
         );
     };
 
@@ -121,26 +137,32 @@ const ShowAdmissions = () => {
 
     return (
         <>
-            {loading ? (
-                <div>Loading...</div>
-            ) : (
-                <>
-                    {admissionsList.length === 0 ? (
-                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                            <GreenButton variant="contained" onClick={() => navigate("/Admin/admissions/add")}>
-                                Add Admission
-                            </GreenButton>
-                        </Box>
-                    ) : (
-                        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                            {Array.isArray(admissionsList) && admissionsList.length > 0 &&
-                                <TableTemplate buttonHaver={AdmissionButtonHaver} columns={admissionColumns} rows={admissionRows} />
-                            }
-                            <SpeedDialTemplate actions={actions} />
-                        </Paper>
-                    )}
-                </>
-            )}
+            <PageContainer title="Admissions Management">
+                {loading ? (
+                    <Box sx={{ textAlign: 'center', py: 4 }}>
+                        <Typography color="text.secondary">Loading...</Typography>
+                    </Box>
+                ) : admissionsList.length === 0 ? (
+                    <Box textAlign="center" py={8}>
+                        <Typography variant="h6" color="text.secondary" mb={3}>
+                            No Admissions Found
+                        </Typography>
+                        <GreenButton 
+                            variant="contained"
+                            startIcon={<PersonAddAlt1Icon />}
+                            onClick={() => navigate("/Admin/admissions/add")}
+                        >
+                            Add Admission
+                        </GreenButton>
+                    </Box>
+                ) : (
+                    Array.isArray(admissionsList) && admissionsList.length > 0 && (
+                        <TableTemplate buttonHaver={AdmissionButtonHaver} columns={admissionColumns} rows={admissionRows} />
+                    )
+                )}
+            </PageContainer>
+            
+            <SpeedDialTemplate actions={actions} />
         </>
     );
 };

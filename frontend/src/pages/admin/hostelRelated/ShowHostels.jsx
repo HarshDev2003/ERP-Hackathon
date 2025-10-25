@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
-import { Paper, Box, IconButton } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { BlueButton, GreenButton } from '../../../components/buttonStyles';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { GreenButton } from '../../../components/buttonStyles';
 import TableTemplate from '../../../components/TableTemplate';
+import PageContainer from '../../../components/PageContainer';
 import AddIcon from '@mui/icons-material/Add';
 import SpeedDialTemplate from '../../../components/SpeedDialTemplate';
 import axios from 'axios';
@@ -68,15 +70,29 @@ const ShowHostels = () => {
 
     const HostelButtonHaver = ({ row }) => {
         return (
-            <>
-                <IconButton onClick={() => deleteHandler(row.id)}>
-                    <DeleteIcon color="error" />
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <IconButton 
+                    onClick={() => navigate("/Admin/hostels/hostel/" + row.id)}
+                    size="small"
+                    sx={{
+                        color: '#8b5cf6',
+                        '&:hover': { backgroundColor: 'rgba(139, 92, 246, 0.1)' }
+                    }}
+                >
+                    <VisibilityIcon fontSize="small" />
                 </IconButton>
-                <BlueButton variant="contained"
-                    onClick={() => navigate("/Admin/hostels/hostel/" + row.id)}>
-                    View
-                </BlueButton>
-            </>
+                
+                <IconButton 
+                    onClick={() => deleteHandler(row.id)}
+                    size="small"
+                    sx={{
+                        color: '#ef4444',
+                        '&:hover': { backgroundColor: 'rgba(239, 68, 68, 0.1)' }
+                    }}
+                >
+                    <DeleteIcon fontSize="small" />
+                </IconButton>
+            </Box>
         );
     };
 
@@ -105,26 +121,32 @@ const ShowHostels = () => {
 
     return (
         <>
-            {loading ? (
-                <div>Loading...</div>
-            ) : (
-                <>
-                    {hostelsList.length === 0 ? (
-                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                            <GreenButton variant="contained" onClick={() => navigate("/Admin/hostels/add")}>
-                                Add Hostel
-                            </GreenButton>
-                        </Box>
-                    ) : (
-                        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                            {Array.isArray(hostelsList) && hostelsList.length > 0 &&
-                                <TableTemplate buttonHaver={HostelButtonHaver} columns={hostelColumns} rows={hostelRows} />
-                            }
-                            <SpeedDialTemplate actions={actions} />
-                        </Paper>
-                    )}
-                </>
-            )}
+            <PageContainer title="Hostel Management">
+                {loading ? (
+                    <Box sx={{ textAlign: 'center', py: 4 }}>
+                        <Typography color="text.secondary">Loading...</Typography>
+                    </Box>
+                ) : hostelsList.length === 0 ? (
+                    <Box textAlign="center" py={8}>
+                        <Typography variant="h6" color="text.secondary" mb={3}>
+                            No Hostels Found
+                        </Typography>
+                        <GreenButton 
+                            variant="contained"
+                            startIcon={<AddIcon />}
+                            onClick={() => navigate("/Admin/hostels/add")}
+                        >
+                            Add Hostel
+                        </GreenButton>
+                    </Box>
+                ) : (
+                    Array.isArray(hostelsList) && hostelsList.length > 0 && (
+                        <TableTemplate buttonHaver={HostelButtonHaver} columns={hostelColumns} rows={hostelRows} />
+                    )
+                )}
+            </PageContainer>
+            
+            <SpeedDialTemplate actions={actions} />
         </>
     );
 };

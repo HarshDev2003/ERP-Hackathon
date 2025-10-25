@@ -5,11 +5,13 @@ import { getSubjectList } from '../../../redux/sclassRelated/sclassHandle';
 import { deleteUser } from '../../../redux/userRelated/userHandle';
 import PostAddIcon from '@mui/icons-material/PostAdd';
 import {
-    Paper, Box, IconButton,
+    Box, IconButton, Typography
 } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import TableTemplate from '../../../components/TableTemplate';
-import { BlueButton, GreenButton } from '../../../components/buttonStyles';
+import PageContainer from '../../../components/PageContainer';
+import { GreenButton } from '../../../components/buttonStyles';
 import SpeedDialTemplate from '../../../components/SpeedDialTemplate';
 import Popup from '../../../components/Popup';
 
@@ -61,15 +63,29 @@ const ShowSubjects = () => {
 
     const SubjectsButtonHaver = ({ row }) => {
         return (
-            <>
-                <IconButton onClick={() => deleteHandler(row.id, "Subject")}>
-                    <DeleteIcon color="error" />
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <IconButton 
+                    onClick={() => navigate(`/Admin/subjects/subject/${row.sclassID}/${row.id}`)}
+                    size="small"
+                    sx={{
+                        color: '#8b5cf6',
+                        '&:hover': { backgroundColor: 'rgba(139, 92, 246, 0.1)' }
+                    }}
+                >
+                    <VisibilityIcon fontSize="small" />
                 </IconButton>
-                <BlueButton variant="contained"
-                    onClick={() => navigate(`/Admin/subjects/subject/${row.sclassID}/${row.id}`)}>
-                    View
-                </BlueButton>
-            </>
+                
+                <IconButton 
+                    onClick={() => deleteHandler(row.id, "Subject")}
+                    size="small"
+                    sx={{
+                        color: '#ef4444',
+                        '&:hover': { backgroundColor: 'rgba(239, 68, 68, 0.1)' }
+                    }}
+                >
+                    <DeleteIcon fontSize="small" />
+                </IconButton>
+            </Box>
         );
     };
 
@@ -86,29 +102,33 @@ const ShowSubjects = () => {
 
     return (
         <>
-            {loading ?
-                <div>Loading...</div>
-                :
-                <>
-                    {response ?
-                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                            <GreenButton variant="contained"
-                                onClick={() => navigate("/Admin/subjects/chooseclass")}>
-                                Add Subjects
-                            </GreenButton>
-                        </Box>
-                        :
-                        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                            {Array.isArray(subjectsList) && subjectsList.length > 0 &&
-                                <TableTemplate buttonHaver={SubjectsButtonHaver} columns={subjectColumns} rows={subjectRows} />
-                            }
-                            <SpeedDialTemplate actions={actions} />
-                        </Paper>
-                    }
-                </>
-            }
+            <PageContainer title="Subjects Management">
+                {loading ? (
+                    <Box sx={{ textAlign: 'center', py: 4 }}>
+                        <Typography color="text.secondary">Loading...</Typography>
+                    </Box>
+                ) : response ? (
+                    <Box textAlign="center" py={8}>
+                        <Typography variant="h6" color="text.secondary" mb={3}>
+                            No Subjects Found
+                        </Typography>
+                        <GreenButton 
+                            variant="contained"
+                            startIcon={<PostAddIcon />}
+                            onClick={() => navigate("/Admin/subjects/chooseclass")}
+                        >
+                            Add Subjects
+                        </GreenButton>
+                    </Box>
+                ) : (
+                    Array.isArray(subjectsList) && subjectsList.length > 0 && (
+                        <TableTemplate buttonHaver={SubjectsButtonHaver} columns={subjectColumns} rows={subjectRows} />
+                    )
+                )}
+            </PageContainer>
+            
+            <SpeedDialTemplate actions={actions} />
             <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
-
         </>
     );
 };
