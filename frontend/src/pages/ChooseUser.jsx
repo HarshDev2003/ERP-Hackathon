@@ -90,40 +90,46 @@ const ChooseUser = ({ visitor }) => {
             <div onClick={() => navigateHandler("Admin")}>
               <StyledPaper elevation={3}>
                 <Box mb={2}>
-                  <AccountCircle fontSize="large" />
+                  <AccountCircle sx={{ fontSize: 70, color: '#8b5cf6', transition: 'all 0.3s ease' }} />
                 </Box>
                 <StyledTypography>
                   Admin
                 </StyledTypography>
-                Login as an administrator to access the dashboard to manage app data.
+                <Description>
+                  Login as an administrator to access the dashboard to manage app data.
+                </Description>
               </StyledPaper>
             </div>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <StyledPaper elevation={3}>
-              <div onClick={() => navigateHandler("Student")}>
+            <div onClick={() => navigateHandler("Student")}>
+              <StyledPaper elevation={3}>
                 <Box mb={2}>
-                  <School fontSize="large" />
+                  <School sx={{ fontSize: 70, color: '#8b5cf6', transition: 'all 0.3s ease' }} />
                 </Box>
                 <StyledTypography>
                   Student
                 </StyledTypography>
-                Login as a student to explore course materials and assignments.
-              </div>
-            </StyledPaper>
+                <Description>
+                  Login as a student to explore course materials and assignments.
+                </Description>
+              </StyledPaper>
+            </div>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
-            <StyledPaper elevation={3}>
-              <div onClick={() => navigateHandler("Teacher")}>
+            <div onClick={() => navigateHandler("Teacher")}>
+              <StyledPaper elevation={3}>
                 <Box mb={2}>
-                  <Group fontSize="large" />
+                  <Group sx={{ fontSize: 70, color: '#8b5cf6', transition: 'all 0.3s ease' }} />
                 </Box>
                 <StyledTypography>
                   Teacher
                 </StyledTypography>
-                Login as a teacher to create courses, assignments, and track student progress.
-              </div>
-            </StyledPaper>
+                <Description>
+                  Login as a teacher to create courses, assignments, and track student progress.
+                </Description>
+              </StyledPaper>
+            </div>
           </Grid>
         </Grid>
       </Container>
@@ -142,26 +148,51 @@ const ChooseUser = ({ visitor }) => {
 export default ChooseUser;
 
 const StyledContainer = styled.div`
-  background: linear-gradient(to bottom, #411d70, #19118b);
-  height: 120vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: 2rem;
 `;
 
 const StyledPaper = styled(Paper)`
-  padding: 20px;
+  padding: 40px 30px;
   text-align: center;
-  background-color: #1f1f38;
-  color:rgba(255, 255, 255, 0.6);
-  cursor:pointer;
+  background: rgba(255, 255, 255, 0.98);
+  color: #374151;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
   &:hover {
-    background-color: #2c2c6c;
-    color:white;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(236, 72, 153, 0.05) 100%);
+    
+    .MuiSvgIcon-root {
+      transform: scale(1.1);
+      color: #7c3aed;
+    }
   }
 `;
 
 const StyledTypography = styled.h2`
-  margin-bottom: 10px;
+  margin: 15px 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+`;
+
+const Description = styled.p`
+  color: #6b7280;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
 `;

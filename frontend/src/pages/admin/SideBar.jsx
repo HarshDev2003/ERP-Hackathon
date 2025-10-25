@@ -26,110 +26,279 @@ const SideBar = () => {
                     to="/"
                     sx={{
                         mb: 0.5,
+                        mx: 1,
                         borderRadius: 2,
+                        transition: 'all 0.3s ease',
                         '&:hover': {
-                            backgroundColor: 'rgba(103, 126, 234, 0.08)',
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
                         }
                     }}
                 >
                     <ListItemIcon>
-                        <HomeIcon color={location.pathname === ("/" || "/Admin/dashboard") ? 'primary' : 'inherit'} />
+                        <HomeIcon sx={{ color: location.pathname === ("/" || "/Admin/dashboard") ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Home" />
+                    <ListItemText primary="Home" sx={{ color: location.pathname === ("/" || "/Admin/dashboard") ? '#8b5cf6' : '#374151', fontWeight: location.pathname === ("/" || "/Admin/dashboard") ? 600 : 400 }} />
                 </ListItemButton>
                 <ListItemButton 
                     component={Link} 
                     to="/Admin/classes"
                     sx={{
                         mb: 0.5,
+                        mx: 1,
                         borderRadius: 2,
+                        transition: 'all 0.3s ease',
                         '&:hover': {
-                            backgroundColor: 'rgba(103, 126, 234, 0.08)',
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
                         }
                     }}
                 >
                     <ListItemIcon>
-                        <ClassOutlinedIcon color={location.pathname.startsWith('/Admin/classes') ? 'primary' : 'inherit'} />
+                        <ClassOutlinedIcon sx={{ color: location.pathname.startsWith('/Admin/classes') ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Classes" />
+                    <ListItemText primary="Classes" sx={{ color: location.pathname.startsWith('/Admin/classes') ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith('/Admin/classes') ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/subjects">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/subjects"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <AssignmentIcon color={location.pathname.startsWith("/Admin/subjects") ? 'primary' : 'inherit'} />
+                        <AssignmentIcon sx={{ color: location.pathname.startsWith("/Admin/subjects") ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Subjects" />
+                    <ListItemText primary="Subjects" sx={{ color: location.pathname.startsWith("/Admin/subjects") ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith("/Admin/subjects") ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/teachers">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/teachers"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <SupervisorAccountOutlinedIcon color={location.pathname.startsWith("/Admin/teachers") ? 'primary' : 'inherit'} />
+                        <SupervisorAccountOutlinedIcon sx={{ color: location.pathname.startsWith("/Admin/teachers") ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Teachers" />
+                    <ListItemText primary="Teachers" sx={{ color: location.pathname.startsWith("/Admin/teachers") ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith("/Admin/teachers") ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/students">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/students"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <PersonOutlineIcon color={location.pathname.startsWith("/Admin/students") ? 'primary' : 'inherit'} />
+                        <PersonOutlineIcon sx={{ color: location.pathname.startsWith("/Admin/students") ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Students" />
+                    <ListItemText primary="Students" sx={{ color: location.pathname.startsWith("/Admin/students") ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith("/Admin/students") ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/notices">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/notices"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <AnnouncementOutlinedIcon color={location.pathname.startsWith("/Admin/notices") ? 'primary' : 'inherit'} />
+                        <AnnouncementOutlinedIcon sx={{ color: location.pathname.startsWith("/Admin/notices") ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Notices" />
+                    <ListItemText primary="Notices" sx={{ color: location.pathname.startsWith("/Admin/notices") ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith("/Admin/notices") ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/complains">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/complains"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <ReportIcon color={location.pathname.startsWith("/Admin/complains") ? 'primary' : 'inherit'} />
+                        <ReportIcon sx={{ color: location.pathname.startsWith("/Admin/complains") ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Complains" />
+                    <ListItemText primary="Complains" sx={{ color: location.pathname.startsWith("/Admin/complains") ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith("/Admin/complains") ? 600 : 400 }} />
                 </ListItemButton>
             </React.Fragment>
-            <Divider sx={{ my: 1 }} />
+            <Divider sx={{ my: 2, mx: 2, backgroundColor: '#e5e7eb' }} />
             <React.Fragment>
-                <ListSubheader component="div" inset>
+                <ListSubheader 
+                    component="div" 
+                    inset
+                    sx={{
+                        color: '#8b5cf6',
+                        fontWeight: 700,
+                        fontSize: '0.75rem',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px'
+                    }}
+                >
                     Management
                 </ListSubheader>
-                <ListItemButton component={Link} to="/Admin/admissions">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/admissions"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <SchoolIcon color={location.pathname.startsWith('/Admin/admissions') ? 'primary' : 'inherit'} />
+                        <SchoolIcon sx={{ color: location.pathname.startsWith('/Admin/admissions') ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Admissions" />
+                    <ListItemText primary="Admissions" sx={{ color: location.pathname.startsWith('/Admin/admissions') ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith('/Admin/admissions') ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/fees">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/fees"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <PaymentIcon color={location.pathname.startsWith('/Admin/fees') ? 'primary' : 'inherit'} />
+                        <PaymentIcon sx={{ color: location.pathname.startsWith('/Admin/fees') ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Fee Management" />
+                    <ListItemText primary="Fee Management" sx={{ color: location.pathname.startsWith('/Admin/fees') ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith('/Admin/fees') ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/hostels">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/hostels"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <HotelIcon color={location.pathname.startsWith('/Admin/hostels') ? 'primary' : 'inherit'} />
+                        <HotelIcon sx={{ color: location.pathname.startsWith('/Admin/hostels') ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Hostel" />
+                    <ListItemText primary="Hostel" sx={{ color: location.pathname.startsWith('/Admin/hostels') ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith('/Admin/hostels') ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Admin/exams">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/exams"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <QuizIcon color={location.pathname.startsWith('/Admin/exams') ? 'primary' : 'inherit'} />
+                        <QuizIcon sx={{ color: location.pathname.startsWith('/Admin/exams') ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Exams" />
+                    <ListItemText primary="Exams" sx={{ color: location.pathname.startsWith('/Admin/exams') ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith('/Admin/exams') ? 600 : 400 }} />
                 </ListItemButton>
             </React.Fragment>
-            <Divider sx={{ my: 1 }} />
+            <Divider sx={{ my: 2, mx: 2, backgroundColor: '#e5e7eb' }} />
             <React.Fragment>
-                <ListSubheader component="div" inset>
+                <ListSubheader 
+                    component="div" 
+                    inset
+                    sx={{
+                        color: '#8b5cf6',
+                        fontWeight: 700,
+                        fontSize: '0.75rem',
+                        textTransform: 'uppercase',
+                        letterSpacing: '1px'
+                    }}
+                >
                     User
                 </ListSubheader>
-                <ListItemButton component={Link} to="/Admin/profile">
+                <ListItemButton 
+                    component={Link} 
+                    to="/Admin/profile"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(139, 92, 246, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <AccountCircleOutlinedIcon color={location.pathname.startsWith("/Admin/profile") ? 'primary' : 'inherit'} />
+                        <AccountCircleOutlinedIcon sx={{ color: location.pathname.startsWith("/Admin/profile") ? '#8b5cf6' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Profile" />
+                    <ListItemText primary="Profile" sx={{ color: location.pathname.startsWith("/Admin/profile") ? '#8b5cf6' : '#374151', fontWeight: location.pathname.startsWith("/Admin/profile") ? 600 : 400 }} />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/logout">
+                <ListItemButton 
+                    component={Link} 
+                    to="/logout"
+                    sx={{
+                        mb: 0.5,
+                        mx: 1,
+                        borderRadius: 2,
+                        transition: 'all 0.3s ease',
+                        '&:hover': {
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            transform: 'translateX(4px)',
+                        }
+                    }}
+                >
                     <ListItemIcon>
-                        <ExitToAppIcon color={location.pathname.startsWith("/logout") ? 'primary' : 'inherit'} />
+                        <ExitToAppIcon sx={{ color: location.pathname.startsWith("/logout") ? '#ef4444' : '#6b7280' }} />
                     </ListItemIcon>
-                    <ListItemText primary="Logout" />
+                    <ListItemText primary="Logout" sx={{ color: location.pathname.startsWith("/logout") ? '#ef4444' : '#374151', fontWeight: location.pathname.startsWith("/logout") ? 600 : 400 }} />
                 </ListItemButton>
             </React.Fragment>
         </>

@@ -135,10 +135,19 @@ const LoginPage = ({ role }) => {
                             alignItems: 'center',
                         }}
                     >
-                        <Typography variant="h4" sx={{ mb: 2, color: "#2c2143" }}>
+                        <Typography 
+                            variant="h4" 
+                            sx={{ 
+                                mb: 2, 
+                                background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent',
+                                fontWeight: 700
+                            }}
+                        >
                             {role} Login
                         </Typography>
-                        <Typography variant="h7">
+                        <Typography variant="body1" sx={{ color: '#6b7280', mb: 3 }}>
                             Welcome back! Please enter your details
                         </Typography>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 2 }}>
@@ -236,7 +245,23 @@ const LoginPage = ({ role }) => {
                                 fullWidth
                                 onClick={guestModeHandler}
                                 variant="outlined"
-                                sx={{ mt: 2, mb: 3, color: "#7f56da", borderColor: "#7f56da" }}
+                                sx={{ 
+                                    mt: 2, 
+                                    mb: 3, 
+                                    color: "#8b5cf6", 
+                                    borderColor: "#8b5cf6",
+                                    borderWidth: 2,
+                                    borderRadius: '10px',
+                                    padding: '10px 24px',
+                                    fontWeight: 600,
+                                    textTransform: 'none',
+                                    '&:hover': {
+                                        borderColor: '#7c3aed',
+                                        borderWidth: 2,
+                                        backgroundColor: 'rgba(139, 92, 246, 0.08)',
+                                        transform: 'translateY(-2px)'
+                                    }
+                                }}
                             >
                                 Login as Guest
                             </Button>
@@ -287,5 +312,10 @@ export default LoginPage
 const StyledLink = styled(Link)`
   margin-top: 9px;
   text-decoration: none;
-  color: #7f56da;
+  color: #8b5cf6;
+  font-weight: 600;
+  transition: color 0.3s ease;
+  &:hover {
+    color: #7c3aed;
+  }
 `;

@@ -2,13 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import {
-    Paper, Box, IconButton
+    Paper, Box, IconButton, Typography
 } from '@mui/material';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import DeleteIcon from "@mui/icons-material/Delete";
 import { getAllNotices } from '../../../redux/noticeRelated/noticeHandle';
 import { deleteUser } from '../../../redux/userRelated/userHandle';
 import TableTemplate from '../../../components/TableTemplate';
+import PageContainer from '../../../components/PageContainer';
 import { GreenButton } from '../../../components/buttonStyles';
 import SpeedDialTemplate from '../../../components/SpeedDialTemplate';
 
@@ -53,11 +54,18 @@ const ShowNotices = () => {
 
     const NoticeButtonHaver = ({ row }) => {
         return (
-            <>
-                <IconButton onClick={() => deleteHandler(row.id, "Notice")}>
-                    <DeleteIcon color="error" />
+            <Box sx={{ display: 'flex', gap: 1, alignItems: 'center', justifyContent: 'center' }}>
+                <IconButton 
+                    onClick={() => deleteHandler(row.id, "Notice")}
+                    size="small"
+                    sx={{
+                        color: '#ef4444',
+                        '&:hover': { backgroundColor: 'rgba(239, 68, 68, 0.1)' }
+                    }}
+                >
+                    <DeleteIcon fontSize="small" />
                 </IconButton>
-            </>
+            </Box>
         );
     };
 
@@ -74,27 +82,32 @@ const ShowNotices = () => {
 
     return (
         <>
-            {loading ?
-                <div>Loading...</div>
-                :
-                <>
-                    {response ?
-                        <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
-                            <GreenButton variant="contained"
-                                onClick={() => navigate("/Admin/addnotice")}>
-                                Add Notice
-                            </GreenButton>
-                        </Box>
-                        :
-                        <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                            {Array.isArray(noticesList) && noticesList.length > 0 &&
-                                <TableTemplate buttonHaver={NoticeButtonHaver} columns={noticeColumns} rows={noticeRows} />
-                            }
-                            <SpeedDialTemplate actions={actions} />
-                        </Paper>
-                    }
-                </>
-            }
+            <PageContainer title="Notices Management">
+                {loading ? (
+                    <Box sx={{ textAlign: 'center', py: 4 }}>
+                        <Typography color="text.secondary">Loading...</Typography>
+                    </Box>
+                ) : response ? (
+                    <Box textAlign="center" py={8}>
+                        <Typography variant="h6" color="text.secondary" mb={3}>
+                            No Notices Found
+                        </Typography>
+                        <GreenButton 
+                            variant="contained"
+                            startIcon={<NoteAddIcon />}
+                            onClick={() => navigate("/Admin/addnotice")}
+                        >
+                            Add Notice
+                        </GreenButton>
+                    </Box>
+                ) : (
+                    Array.isArray(noticesList) && noticesList.length > 0 && (
+                        <TableTemplate buttonHaver={NoticeButtonHaver} columns={noticeColumns} rows={noticeRows} />
+                    )
+                )}
+            </PageContainer>
+            
+            <SpeedDialTemplate actions={actions} />
         </>
     );
 };

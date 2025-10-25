@@ -13,11 +13,21 @@ a {
 }
 
 :root {
-  --color-bg: #1f1f38;
-  --color-bg-variant: #2c2c6c;
-  --color-primary: #4db5ff;
-  --color-primary-variant: rgba(77, 181, 255, 0.4);
-  --color-light: rgba(255, 255, 255, 0.6);
+  --color-bg: #0f172a;
+  --color-bg-variant: #1e293b;
+  --color-primary: #6366f1;
+  --color-primary-variant: rgba(99, 102, 241, 0.2);
+  --color-secondary: #8b5cf6;
+  --color-accent: #ec4899;
+  --color-light: rgba(255, 255, 255, 0.7);
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  --gradient-accent: linear-gradient(135deg, #ec4899 0%, #8b5cf6 100%);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 /* FORM */
@@ -64,16 +74,20 @@ a {
 .registerButton {
   margin-top: 20px;
   cursor: pointer;
-  background-color: #000000;
+  background: var(--gradient-secondary);
   color: white;
-  padding: 10px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 10px;
+  border-radius: 12px;
   text-align: center;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
 }
 
 .registerButton:hover {
-  background-color: #313131;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
 }
 
 @media screen and (max-width: 480px) {

@@ -5,7 +5,17 @@ import { registerUser } from '../../../redux/userRelated/userHandle';
 import Popup from '../../../components/Popup';
 import { underControl } from '../../../redux/userRelated/userSlice';
 import { getAllSclasses } from '../../../redux/sclassRelated/sclassHandle';
-import { CircularProgress } from '@mui/material';
+import { 
+    TextField, 
+    Select, 
+    MenuItem, 
+    FormControl, 
+    InputLabel, 
+    Box,
+    CircularProgress 
+} from '@mui/material';
+import PageContainer from '../../../components/PageContainer';
+import { LightPurpleButton } from '../../../components/buttonStyles';
 
 const AddStudent = ({ situation }) => {
     const dispatch = useDispatch()
@@ -86,54 +96,133 @@ const AddStudent = ({ situation }) => {
 
     return (
         <>
-            <div className="register">
-                <form className="registerForm" onSubmit={submitHandler}>
-                    <span className="registerTitle">Add Student</span>
-                    <label>Name</label>
-                    <input className="registerInput" type="text" placeholder="Enter student's name..."
+            <PageContainer title="Add Student">
+                <Box 
+                    component="form" 
+                    onSubmit={submitHandler}
+                    sx={{
+                        maxWidth: 600,
+                        mx: 'auto',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: 3
+                    }}
+                >
+                    <TextField
+                        label="Student Name"
+                        variant="outlined"
+                        fullWidth
                         value={name}
                         onChange={(event) => setName(event.target.value)}
-                        autoComplete="name" required />
+                        autoComplete="name"
+                        required
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: '10px',
+                                '&.Mui-focused fieldset': {
+                                    borderColor: '#8b5cf6',
+                                    borderWidth: '2px'
+                                }
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#8b5cf6'
+                            }
+                        }}
+                    />
 
-                    {
-                        situation === "Student" &&
-                        <>
-                            <label>Class</label>
-                            <select
-                                className="registerInput"
+                    {situation === "Student" && (
+                        <FormControl 
+                            fullWidth 
+                            required
+                            sx={{
+                                '& .MuiOutlinedInput-root': {
+                                    borderRadius: '10px',
+                                    '&.Mui-focused fieldset': {
+                                        borderColor: '#8b5cf6',
+                                        borderWidth: '2px'
+                                    }
+                                },
+                                '& .MuiInputLabel-root.Mui-focused': {
+                                    color: '#8b5cf6'
+                                }
+                            }}
+                        >
+                            <InputLabel>Select Class</InputLabel>
+                            <Select
                                 value={className}
-                                onChange={changeHandler} required>
-                                <option value='Select Class'>Select Class</option>
+                                onChange={changeHandler}
+                                label="Select Class"
+                            >
+                                <MenuItem value='Select Class'>Select Class</MenuItem>
                                 {sclassesList.map((classItem, index) => (
-                                    <option key={index} value={classItem.sclassName}>
+                                    <MenuItem key={index} value={classItem.sclassName}>
                                         {classItem.sclassName}
-                                    </option>
+                                    </MenuItem>
                                 ))}
-                            </select>
-                        </>
-                    }
+                            </Select>
+                        </FormControl>
+                    )}
 
-                    <label>Roll Number</label>
-                    <input className="registerInput" type="number" placeholder="Enter student's Roll Number..."
+                    <TextField
+                        label="Roll Number"
+                        variant="outlined"
+                        type="number"
+                        fullWidth
                         value={rollNum}
                         onChange={(event) => setRollNum(event.target.value)}
-                        required />
+                        required
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: '10px',
+                                '&.Mui-focused fieldset': {
+                                    borderColor: '#8b5cf6',
+                                    borderWidth: '2px'
+                                }
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#8b5cf6'
+                            }
+                        }}
+                    />
 
-                    <label>Password</label>
-                    <input className="registerInput" type="password" placeholder="Enter student's password..."
+                    <TextField
+                        label="Password"
+                        variant="outlined"
+                        type="password"
+                        fullWidth
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
-                        autoComplete="new-password" required />
+                        autoComplete="new-password"
+                        required
+                        sx={{
+                            '& .MuiOutlinedInput-root': {
+                                borderRadius: '10px',
+                                '&.Mui-focused fieldset': {
+                                    borderColor: '#8b5cf6',
+                                    borderWidth: '2px'
+                                }
+                            },
+                            '& .MuiInputLabel-root.Mui-focused': {
+                                color: '#8b5cf6'
+                            }
+                        }}
+                    />
 
-                    <button className="registerButton" type="submit" disabled={loader}>
-                        {loader ? (
-                            <CircularProgress size={24} color="inherit" />
-                        ) : (
-                            'Add'
-                        )}
-                    </button>
-                </form>
-            </div>
+                    <Box sx={{ display: 'flex', gap: 2, justifyContent: 'flex-end', mt: 2 }}>
+                        <LightPurpleButton 
+                            type="submit" 
+                            disabled={loader}
+                            sx={{ minWidth: 120 }}
+                        >
+                            {loader ? (
+                                <CircularProgress size={24} color="inherit" />
+                            ) : (
+                                'Add Student'
+                            )}
+                        </LightPurpleButton>
+                    </Box>
+                </Box>
+            </PageContainer>
             <Popup message={message} setShowPopup={setShowPopup} showPopup={showPopup} />
         </>
     )
