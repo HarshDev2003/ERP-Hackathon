@@ -8,9 +8,10 @@ import TableTemplate from '../../../components/TableTemplate';
 
 const SeeComplains = () => {
 
-  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };  const dispatch = useDispatch();
+  const label = { inputProps: { 'aria-label': 'Checkbox demo' } };  
+  const dispatch = useDispatch();
   const { complainsList, loading, error, response } = useSelector((state) => state.complain);
-  const { currentUser } = useSelector(state => state.user)
+  const { currentUser } = useSelector(state => state.user);
 
   useEffect(() => {
     dispatch(getAllComplains(currentUser._id, "Complain"));
@@ -47,23 +48,37 @@ const SeeComplains = () => {
 
   return (
     <>
-      {loading ?
+      {loading ? (
         <div>Loading...</div>
-        :
+      ) : (
         <>
-          {response ?
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', marginTop: '16px' }}>
+          {response ? (
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                height: '200px',
+                fontSize: '1.2rem',
+                fontWeight: 500,
+                color: '#555',
+              }}
+            >
               No Complains Right Now
             </Box>
-            :
+          ) : (
             <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-              {Array.isArray(complainsList) && complainsList.length > 0 &&
-                <TableTemplate buttonHaver={ComplainButtonHaver} columns={complainColumns} rows={complainRows} />
-              }
+              {Array.isArray(complainsList) && complainsList.length > 0 && (
+                <TableTemplate
+                  buttonHaver={ComplainButtonHaver}
+                  columns={complainColumns}
+                  rows={complainRows}
+                />
+              )}
             </Paper>
-          }
+          )}
         </>
-      }
+      )}
     </>
   );
 };
