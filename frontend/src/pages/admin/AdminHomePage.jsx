@@ -47,7 +47,7 @@ const AdminHomePage = () => {
             <Grid container spacing={3}>
                 {/* Students Card */}
                 <Grid item xs={12} sm={6} md={3}>
-                    <GradientCard gradient="linear-gradient(135deg, #667eea 0%, #764ba2 100%)">
+                    <GradientCard gradient="linear-gradient(135deg, #3c53a8ff 0%, #161892ff 100%)">
                         <CardContent sx={{ position: 'relative', height: '100%' }}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <Box>

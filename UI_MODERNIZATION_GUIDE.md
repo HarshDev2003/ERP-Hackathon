@@ -16,10 +16,10 @@ This document outlines the modern UI updates made to the School Management Syste
 - **Smooth Transitions** - All animations use CSS transitions
 
 #### Card Gradients:
-1. **Students Card**: Purple gradient (`#667eea → #764ba2`)
+1. **Students Card**: Purple gradient (`#667eea → #4b4ea2ff`)
 2. **Classes Card**: Pink-red gradient (`#f093fb → #f5576c`)
 3. **Teachers Card**: Blue-cyan gradient (`#4facfe → #00f2fe`)
-4. **Fees Card**: Pink-yellow gradient (`#fa709a → #fee140`)
+4. **Fees Card**: Pink-yellow gradient (`#fa709a → #321d9cff`)
 
 #### Visual Improvements:
 - Large, bold numbers with CountUp animation
