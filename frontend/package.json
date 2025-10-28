@@ -2,7 +2,7 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "type":"module",
+  "type": "module",
   "dependencies": {
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
@@ -16,6 +16,7 @@
     "react": "^18.2.0",
     "react-countup": "^6.4.2",
     "react-dom": "^18.2.0",
+    "react-is": "^19.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
     "recharts": "^2.6.2",
@@ -48,9 +49,9 @@
     ]
   },
   "devDependencies": {
-    "webpack": "^5.81.0",
+    "@vitejs/plugin-react": "^5.0.0",
     "vite": "^5.0.0",
-    "@vitejs/plugin-react": "^5.0.0"
+    "webpack": "^5.81.0"
   },
   "_converted_from_scripts_backup": {
     "start": "react-scripts start",

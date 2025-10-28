@@ -47,7 +47,10 @@ const AdminHomePage = () => {
             <Grid container spacing={3}>
                 {/* Students Card */}
                 <Grid item xs={12} sm={6} md={3}>
-                    <GradientCard gradient="linear-gradient(135deg, #3c53a8ff 0%, #161892ff 100%)">
+
+
+                    <GradientCard gradient="linear-gradient(135deg, #3c53a8ff 0%, #161892ff)">
+
                         <CardContent sx={{ position: 'relative', height: '100%' }}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <Box>
@@ -74,7 +77,7 @@ const AdminHomePage = () => {
 
                 {/* Classes Card */}
                 <Grid item xs={12} sm={6} md={3}>
-                    <GradientCard gradient="linear-gradient(135deg, #f093fb 0%, #f5576c 100%)">
+                    <GradientCard gradient="linear-gradient(135deg, #3c53a8ff 0%, #161892ff)">
                         <CardContent sx={{ position: 'relative', height: '100%' }}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <Box>
@@ -101,7 +104,7 @@ const AdminHomePage = () => {
 
                 {/* Teachers Card */}
                 <Grid item xs={12} sm={6} md={3}>
-                    <GradientCard gradient="linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)">
+                    <GradientCard gradient="linear-gradient(135deg, #3c53a8ff 0%, #161892ff)">
                         <CardContent sx={{ position: 'relative', height: '100%' }}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <Box>
@@ -128,7 +131,7 @@ const AdminHomePage = () => {
 
                 {/* Fees Card */}
                 <Grid item xs={12} sm={6} md={3}>
-                    <GradientCard gradient="linear-gradient(135deg, #fa709a 0%, #fee140 100%)">
+                    <GradientCard gradient="linear-gradient(135deg, #3c53a8ff 0%, #161892ff)">
                         <CardContent sx={{ position: 'relative', height: '100%' }}>
                             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                                 <Box>
