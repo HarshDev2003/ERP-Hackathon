@@ -23,6 +23,10 @@ import TeacherHomePage from './TeacherHomePage';
 import TeacherProfile from './TeacherProfile';
 import TeacherViewStudent from './TeacherViewStudent';
 import StudentExamMarks from '../admin/studentRelated/StudentExamMarks';
+import TeacherSubjects from './TeacherSubjects';
+import TeacherSubjectDetails from './TeacherSubjectDetails';
+import TeacherNotices from './TeacherNotices';
+import TeacherExams from './TeacherExams';
 
 const TeacherDashboard = () => {
     const [open, setOpen] = useState(true);
@@ -79,10 +83,17 @@ const TeacherDashboard = () => {
                         <Route path="/Teacher/dashboard" element={<TeacherHomePage />} />
                         <Route path="/Teacher/profile" element={<TeacherProfile />} />
 
+                        <Route path="/Teacher/notices" element={<TeacherNotices />} />
                         <Route path="/Teacher/complain" element={<TeacherComplain />} />
-
+                        
+                        <Route path="/Teacher/students" element={<TeacherClassDetails />} />
                         <Route path="/Teacher/class" element={<TeacherClassDetails />} />
                         <Route path="/Teacher/class/student/:id" element={<TeacherViewStudent />} />
+
+                        <Route path="/Teacher/subjects" element={<TeacherSubjects />} />
+                        <Route path="/Teacher/subject/:id" element={<TeacherSubjectDetails />} />
+
+                        <Route path="/Teacher/exams" element={<TeacherExams />} />
 
                         {/* Attendance disabled */}
                         {/* <Route path="/Teacher/class/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation=\"Subject\" />} /> */}
