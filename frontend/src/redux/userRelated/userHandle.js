@@ -85,7 +85,7 @@ export const deleteUser = (id, address) => async (dispatch) => {
     }
 };
 
-export const updateUser = (fields, id, address) => async (dispatch) => {
+export const updateUser = (fields, id, address) => async (dispatch, getState) => {
     dispatch(getRequest());
 
     try {
@@ -93,10 +93,20 @@ export const updateUser = (fields, id, address) => async (dispatch) => {
             headers: { 'Content-Type': 'application/json' },
         });
 
+        // For Admin updates, keep old behavior
         if (result.data.schoolName) {
             dispatch(authSuccess(result.data));
-        } else {
-            dispatch(doneSuccess(result.data));
+            return;
+        }
+
+        // For Student/Teacher updates, merge into currentUser so UI reflects immediately
+        const state = getState();
+        const current = state.user.currentUser || {};
+        const merged = { ...current, ...result.data };
+        dispatch(doneSuccess(result.data));
+        // Only overwrite auth state for Student/Teacher
+        if (address === 'Student' || address === 'Teacher') {
+            dispatch(authSuccess(merged));
         }
     } catch (error) {
         dispatch(getError(error));
