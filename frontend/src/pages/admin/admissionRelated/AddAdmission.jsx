@@ -212,7 +212,7 @@ const AddAdmission = () => {
                         <Grid item xs={12} sm={6}>
                             <TextField
                                 fullWidth
-                                label="Previous School"
+                                label="Previous College"
                                 name="previousSchool"
                                 value={formData.previousSchool}
                                 onChange={handleInputChange}

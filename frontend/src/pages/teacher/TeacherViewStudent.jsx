@@ -74,7 +74,7 @@ const TeacherViewStudent = () => {
                     <br />
                     Class: {sclassName.sclassName}
                     <br />
-                    School: {studentSchool.schoolName}
+                    College: {studentSchool.schoolName}
                     <br /><br />
 
                     {/* Attendance disabled: hide attendance details and actions */}

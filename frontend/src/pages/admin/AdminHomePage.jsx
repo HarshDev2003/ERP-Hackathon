@@ -40,7 +40,7 @@ const AdminHomePage = () => {
                     Dashboard Overview
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    Welcome back! Here's what's happening in your school today.
+                    Welcome back! Here's what's happening in your college today.
                 </Typography>
             </Box>
 

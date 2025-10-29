@@ -20,10 +20,10 @@ const Homepage = () => {
                         </LogoContainer>
                         <StyledTitle>
                             Welcome to
-                            <GradientText>School Management System</GradientText>
+                            <GradientText>College Management System</GradientText>
                         </StyledTitle>
                         <StyledText>
-                            Streamline school management, class organization, and add students and faculty.
+                            Streamline college management, class organization, and add students and faculty.
                             Seamlessly track attendance, assess performance, and provide feedback.
                             Access records, view marks, and communicate effortlessly.
                         </StyledText>
