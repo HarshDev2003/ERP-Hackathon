@@ -39,7 +39,7 @@ const TeacherClassDetails = () => {
     })
 
     const StudentsButtonHaver = ({ row }) => {
-        const options = ['Take Attendance', 'Provide Marks'];
+        const options = ['Provide Marks'];
 
         const [open, setOpen] = React.useState(false);
         const anchorRef = React.useRef(null);
@@ -47,16 +47,14 @@ const TeacherClassDetails = () => {
 
         const handleClick = () => {
             console.info(`You clicked ${options[selectedIndex]}`);
-            if (selectedIndex === 0) {
-                handleAttendance();
-            } else if (selectedIndex === 1) {
-                handleMarks();
-            }
+            // Attendance disabled; always handle marks
+            handleMarks();
         };
 
-        const handleAttendance = () => {
-            navigate(`/Teacher/class/student/attendance/${row.id}/${subjectID}`)
-        }
+        // Attendance disabled
+        // const handleAttendance = () => {
+        //     navigate(`/Teacher/class/student/attendance/${row.id}/${subjectID}`)
+        // }
         const handleMarks = () => {
             navigate(`/Teacher/class/student/marks/${row.id}/${subjectID}`)
         };

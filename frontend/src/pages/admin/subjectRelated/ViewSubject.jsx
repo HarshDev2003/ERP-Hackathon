@@ -37,10 +37,11 @@ const ViewSubject = () => {
     setValue(newValue);
   };
 
-  const [selectedSection, setSelectedSection] = useState('attendance');
-  const handleSectionChange = (event, newSection) => {
-    setSelectedSection(newSection);
-  };
+  // Attendance disabled: only show Marks section
+  // const [selectedSection, setSelectedSection] = useState('attendance');
+  // const handleSectionChange = (event, newSection) => {
+  //   setSelectedSection(newSection);
+  // };
 
   const studentColumns = [
     { id: 'rollNum', label: 'Roll No.', minWidth: 100 },
@@ -55,26 +56,27 @@ const ViewSubject = () => {
     };
   })
 
-  const StudentsAttendanceButtonHaver = ({ row }) => {
-    return (
-      <>
-        <BlueButton
-          variant="contained"
-          onClick={() => navigate("/Admin/students/student/" + row.id)}
-        >
-          View
-        </BlueButton>
-        <PurpleButton
-          variant="contained"
-          onClick={() =>
-            navigate(`/Admin/subject/student/attendance/${row.id}/${subjectID}`)
-          }
-        >
-          Take Attendance
-        </PurpleButton>
-      </>
-    );
-  };
+  // Attendance disabled: remove attendance button
+  // const StudentsAttendanceButtonHaver = ({ row }) => {
+  //   return (
+  //     <>
+  //       <BlueButton
+  //         variant="contained"
+  //         onClick={() => navigate("/Admin/students/student/" + row.id)}
+  //       >
+  //         View
+  //       </BlueButton>
+  //       <PurpleButton
+  //         variant="contained"
+  //         onClick={() =>
+  //           navigate(`/Admin/subject/student/attendance/${row.id}/${subjectID}`)
+  //         }
+  //       >
+  //         Take Attendance
+  //       </PurpleButton>
+  //     </>
+  //   );
+  // };
 
   const StudentsMarksButtonHaver = ({ row }) => {
     return (
@@ -113,27 +115,8 @@ const ViewSubject = () => {
               Students List:
             </Typography>
 
-            {selectedSection === 'attendance' &&
-              <TableTemplate buttonHaver={StudentsAttendanceButtonHaver} columns={studentColumns} rows={studentRows} />
-            }
-            {selectedSection === 'marks' &&
-              <TableTemplate buttonHaver={StudentsMarksButtonHaver} columns={studentColumns} rows={studentRows} />
-            }
-
-            <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
-              <BottomNavigation value={selectedSection} onChange={handleSectionChange} showLabels>
-                <BottomNavigationAction
-                  label="Attendance"
-                  value="attendance"
-                  icon={selectedSection === 'attendance' ? <TableChartIcon /> : <TableChartOutlinedIcon />}
-                />
-                <BottomNavigationAction
-                  label="Marks"
-                  value="marks"
-                  icon={selectedSection === 'marks' ? <InsertChartIcon /> : <InsertChartOutlinedIcon />}
-                />
-              </BottomNavigation>
-            </Paper>
+            {/* Attendance disabled: show only Marks table */}
+            <TableTemplate buttonHaver={StudentsMarksButtonHaver} columns={studentColumns} rows={studentRows} />
 
           </>
         )}

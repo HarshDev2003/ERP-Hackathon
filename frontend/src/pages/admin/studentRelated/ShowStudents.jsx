@@ -62,7 +62,7 @@ const ShowStudents = () => {
     }));
 
   const StudentButtonHaver = ({ row }) => {
-    const options = ["Take Attendance", "Provide Marks"];
+    const options = ["Provide Marks"]; // Attendance disabled
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
     const [selectedIndex, setSelectedIndex] = useState(0);
@@ -96,11 +96,7 @@ const ShowStudents = () => {
             <BlueButton
               size="small"
               onClick={() =>
-                navigate(
-                  selectedIndex === 0
-                    ? `/Admin/students/student/attendance/${row.id}`
-                    : `/Admin/students/student/marks/${row.id}`
-                )
+                navigate(`/Admin/students/student/marks/${row.id}`)
               }
               sx={{ fontSize: '0.75rem', padding: '4px 12px' }}
             >

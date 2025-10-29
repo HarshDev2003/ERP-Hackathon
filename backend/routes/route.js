@@ -54,13 +54,16 @@ router.put("/Student/:id", updateStudent)
 
 router.put('/UpdateExamResult/:id', updateExamResult)
 
-router.put('/StudentAttendance/:id', studentAttendance)
+// Attendance disabled
+// router.put('/StudentAttendance/:id', studentAttendance)
 
-router.put('/RemoveAllStudentsSubAtten/:id', clearAllStudentsAttendanceBySubject);
-router.put('/RemoveAllStudentsAtten/:id', clearAllStudentsAttendance);
+// Attendance disabled
+// router.put('/RemoveAllStudentsSubAtten/:id', clearAllStudentsAttendanceBySubject);
+// router.put('/RemoveAllStudentsAtten/:id', clearAllStudentsAttendance);
 
-router.put('/RemoveStudentSubAtten/:id', removeStudentAttendanceBySubject);
-router.put('/RemoveStudentAtten/:id', removeStudentAttendance)
+// Attendance disabled
+// router.put('/RemoveStudentSubAtten/:id', removeStudentAttendanceBySubject);
+// router.put('/RemoveStudentAtten/:id', removeStudentAttendance)
 
 // Teacher
 
@@ -76,7 +79,8 @@ router.delete("/Teacher/:id", deleteTeacher)
 
 router.put("/TeacherSubject", updateTeacherSubject)
 
-router.post('/TeacherAttendance/:id', teacherAttendance)
+// Attendance disabled
+// router.post('/TeacherAttendance/:id', teacherAttendance)
 
 // Notice
 

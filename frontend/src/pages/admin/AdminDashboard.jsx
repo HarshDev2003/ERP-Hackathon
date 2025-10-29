@@ -124,7 +124,8 @@ const AdminDashboard = () => {
                         <Route path="/Admin/addsubject/:id" element={<SubjectForm />} />
                         <Route path="/Admin/class/subject/:classID/:subjectID" element={<ViewSubject />} />
 
-                        <Route path="/Admin/subject/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} />
+                        {/* Attendance disabled */}
+                        {/* <Route path="/Admin/subject/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation=\"Subject\" />} /> */}
                         <Route path="/Admin/subject/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} />
 
                         {/* Class */}
@@ -137,7 +138,8 @@ const AdminDashboard = () => {
                         <Route path="/Admin/addstudents" element={<AddStudent situation="Student" />} />
                         <Route path="/Admin/students" element={<ShowStudents />} />
                         <Route path="/Admin/students/student/:id" element={<ViewStudent />} />
-                        <Route path="/Admin/students/student/attendance/:id" element={<StudentAttendance situation="Student" />} />
+                        {/* Attendance disabled */}
+                        {/* <Route path="/Admin/students/student/attendance/:id" element={<StudentAttendance situation=\"Student\" />} /> */}
                         <Route path="/Admin/students/student/marks/:id" element={<StudentExamMarks situation="Student" />} />
 
                         {/* Teacher */}
