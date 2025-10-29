@@ -27,6 +27,11 @@ const teacherSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'subject',
     },
+    // New: allow multiple subjects per teacher
+    teachSubjects: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'subject',
+    }],
     teachSclass: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'sclass',

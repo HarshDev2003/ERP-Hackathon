@@ -3,12 +3,12 @@ const Teacher = require('../models/teacherSchema.js');
 const Subject = require('../models/subjectSchema.js');
 
 const teacherRegister = async (req, res) => {
-    const { name, email, password, role, school, teachSubject, teachSclass } = req.body;
+    const { name, email, password, role, school, teachSubject, teachSclass, teachSubjects } = req.body;
     try {
         const salt = await bcrypt.genSalt(10);
         const hashedPass = await bcrypt.hash(password, salt);
 
-        const teacher = new Teacher({ name, email, password: hashedPass, role, school, teachSubject, teachSclass });
+        const teacher = new Teacher({ name, email, password: hashedPass, role, school, teachSubject, teachSclass, teachSubjects: teachSubjects || (teachSubject ? [teachSubject] : []) });
 
         const existingTeacherByEmail = await Teacher.findOne({ email });
 
@@ -17,7 +17,15 @@ const teacherRegister = async (req, res) => {
         }
         else {
             let result = await teacher.save();
-            await Subject.findByIdAndUpdate(teachSubject, { teacher: teacher._id });
+            if (teachSubject) {
+                await Subject.findByIdAndUpdate(teachSubject, { teacher: teacher._id });
+            }
+            if (Array.isArray(teachSubjects)) {
+                await Subject.updateMany(
+                    { _id: { $in: teachSubjects } },
+                    { $set: { teacher: teacher._id } }
+                );
+            }
             result.password = undefined;
             res.send(result);
         }
@@ -33,6 +41,7 @@ const teacherLogIn = async (req, res) => {
             const validated = await bcrypt.compare(req.body.password, teacher.password);
             if (validated) {
                 teacher = await teacher.populate("teachSubject", "subName sessions")
+                teacher = await teacher.populate("teachSubjects", "subName sessions")
                 teacher = await teacher.populate("school", "schoolName")
                 teacher = await teacher.populate("teachSclass", "sclassName")
                 teacher.password = undefined;
@@ -52,6 +61,7 @@ const getTeachers = async (req, res) => {
     try {
         let teachers = await Teacher.find({ school: req.params.id })
             .populate("teachSubject", "subName")
+            .populate("teachSubjects", "subName")
             .populate("teachSclass", "sclassName");
         if (teachers.length > 0) {
             let modifiedTeachers = teachers.map((teacher) => {
@@ -70,6 +80,7 @@ const getTeacherDetail = async (req, res) => {
     try {
         let teacher = await Teacher.findById(req.params.id)
             .populate("teachSubject", "subName sessions")
+            .populate("teachSubjects", "subName sessions")
             .populate("school", "schoolName")
             .populate("teachSclass", "sclassName")
         if (teacher) {
@@ -85,17 +96,36 @@ const getTeacherDetail = async (req, res) => {
 }
 
 const updateTeacherSubject = async (req, res) => {
-    const { teacherId, teachSubject } = req.body;
+    const { teacherId, teachSubject, teachSubjects } = req.body;
     try {
-        const updatedTeacher = await Teacher.findByIdAndUpdate(
-            teacherId,
-            { teachSubject },
-            { new: true }
-        );
+        const teacher = await Teacher.findById(teacherId);
+        if (!teacher) return res.status(404).send({ message: 'Teacher not found' });
 
-        await Subject.findByIdAndUpdate(teachSubject, { teacher: updatedTeacher._id });
+        // Normalize input to an array of subject IDs to add
+        const subjectsToAdd = Array.isArray(teachSubjects)
+            ? teachSubjects
+            : (teachSubject ? [teachSubject] : []);
 
-        res.send(updatedTeacher);
+        // Merge unique subjects
+        const current = new Set((teacher.teachSubjects || []).map(id => id.toString()));
+        subjectsToAdd.forEach(id => current.add(id.toString()));
+        const mergedSubjects = Array.from(current);
+
+        teacher.teachSubjects = mergedSubjects;
+        // Keep single teachSubject as the first for backward compatibility
+        if (mergedSubjects.length > 0) teacher.teachSubject = mergedSubjects[0];
+
+        await teacher.save();
+
+        // Assign teacher to each subject
+        await Subject.updateMany({ _id: { $in: subjectsToAdd } }, { $set: { teacher: teacher._id } });
+
+        const populated = await Teacher.findById(teacherId)
+            .populate("teachSubject", "subName sessions")
+            .populate("teachSubjects", "subName sessions")
+            .populate("teachSclass", "sclassName");
+
+        res.send(populated);
     } catch (error) {
         res.status(500).json(error);
     }
@@ -105,8 +135,8 @@ const deleteTeacher = async (req, res) => {
     try {
         const deletedTeacher = await Teacher.findByIdAndDelete(req.params.id);
 
-        await Subject.updateOne(
-            { teacher: deletedTeacher._id, teacher: { $exists: true } },
+        await Subject.updateMany(
+            { teacher: deletedTeacher._id },
             { $unset: { teacher: 1 } }
         );
 

@@ -42,18 +42,20 @@ const ShowTeachers = () => {
 
     const columns = [
         { id: 'name', label: 'Name', minWidth: 170 },
-        { id: 'teachSubject', label: 'Subject', minWidth: 170 },
+        { id: 'teachSubjects', label: 'Subjects', minWidth: 170 },
         { id: 'teachSclass', label: 'Class', minWidth: 170 },
     ];
 
     const rows = teachersList && teachersList.map((teacher) => {
         return {
             name: teacher.name,
-            teachSubject: teacher.teachSubject?.subName || 'Not Assigned',
+            teachSubjects: Array.isArray(teacher.teachSubjects) && teacher.teachSubjects.length > 0
+                ? teacher.teachSubjects.map(s => s.subName).join(', ')
+                : (teacher.teachSubject?.subName || 'Not Assigned'),
             teachSclass: teacher.teachSclass.sclassName,
             teachSclassID: teacher.teachSclass._id,
             id: teacher._id,
-            hasSubject: !!teacher.teachSubject?.subName,
+            hasSubject: (Array.isArray(teacher.teachSubjects) && teacher.teachSubjects.length > 0) || !!teacher.teachSubject?.subName,
         };
     });
 
@@ -82,15 +84,13 @@ const ShowTeachers = () => {
                     <PersonRemoveIcon fontSize="small" />
                 </IconButton>
                 
-                {!row.hasSubject && (
-                    <LightPurpleButton
-                        size="small"
-                        onClick={() => navigate(`/Admin/teachers/choosesubject/${row.teachSclassID}/${row.id}`)}
-                        sx={{ fontSize: '0.75rem', padding: '4px 12px' }}
-                    >
-                        Assign Subject
-                    </LightPurpleButton>
-                )}
+                <LightPurpleButton
+                    size="small"
+                    onClick={() => navigate(`/Admin/teachers/choosesubject/${row.teachSclassID}/${row.id}`)}
+                    sx={{ fontSize: '0.75rem', padding: '4px 12px' }}
+                >
+                    Assign Subject(s)
+                </LightPurpleButton>
             </Box>
         );
     };

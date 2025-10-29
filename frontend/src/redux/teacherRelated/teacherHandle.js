@@ -36,11 +36,14 @@ export const getTeacherDetails = (id) => async (dispatch) => {
     }
 }
 
-export const updateTeachSubject = (teacherId, teachSubject) => async (dispatch) => {
+export const updateTeachSubject = (teacherId, subjects) => async (dispatch) => {
     dispatch(getRequest());
 
     try {
-        await axios.put(`${import.meta.env.VITE_BASE_URL}/TeacherSubject`, { teacherId, teachSubject }, {
+        const payload = Array.isArray(subjects)
+            ? { teacherId, teachSubjects: subjects }
+            : { teacherId, teachSubject: subjects };
+        await axios.put(`${import.meta.env.VITE_BASE_URL}/TeacherSubject`, payload, {
             headers: { 'Content-Type': 'application/json' },
         });
         dispatch(postDone());

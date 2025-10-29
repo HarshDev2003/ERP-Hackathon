@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Box, Table, TableBody, TableContainer, TableHead, Typography, Paper } from '@mui/material'
+import { Box, Table, TableBody, TableContainer, TableHead, Typography, Paper, Checkbox, Button } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom';
 import { getTeacherFreeClassSubjects } from '../../../redux/sclassRelated/sclassHandle';
 import { updateTeachSubject } from '../../../redux/teacherRelated/teacherHandle';
@@ -15,6 +15,7 @@ const ChooseSubject = ({ situation }) => {
     const [classID, setClassID] = useState("");
     const [teacherID, setTeacherID] = useState("");
     const [loader, setLoader] = useState(false)
+    const [selected, setSelected] = useState([])
 
     const { subjectsList, loading, error, response } = useSelector((state) => state.sclass);
 
@@ -48,6 +49,19 @@ const ChooseSubject = ({ situation }) => {
         console.log(error)
     }
 
+    const toggleSelect = (id) => {
+        setSelected((prev) => (
+            prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]
+        ));
+    }
+
+    const assignSelected = () => {
+        if (selected.length === 0) return;
+        setLoader(true)
+        dispatch(updateTeachSubject(teacherID, selected))
+        navigate("/Admin/teachers")
+    }
+
     const updateSubjectHandler = (teacherId, teachSubject) => {
         setLoader(true)
         dispatch(updateTeachSubject(teacherId, teachSubject))
@@ -65,6 +79,7 @@ const ChooseSubject = ({ situation }) => {
                         <TableHead>
                             <StyledTableRow>
                                 <StyledTableCell></StyledTableCell>
+                                {situation === "Teacher" && <StyledTableCell align="center">Select</StyledTableCell>}
                                 <StyledTableCell align="center">Subject Name</StyledTableCell>
                                 <StyledTableCell align="center">Subject Code</StyledTableCell>
                                 <StyledTableCell align="center">Actions</StyledTableCell>
@@ -76,6 +91,15 @@ const ChooseSubject = ({ situation }) => {
                                     <StyledTableCell component="th" scope="row" style={{ color: "white" }}>
                                         {index + 1}
                                     </StyledTableCell>
+                                    {situation === "Teacher" && (
+                                        <StyledTableCell align="center">
+                                            <Checkbox
+                                                color="primary"
+                                                checked={selected.includes(subject._id)}
+                                                onChange={() => toggleSelect(subject._id)}
+                                            />
+                                        </StyledTableCell>
+                                    )}
                                     <StyledTableCell align="center">{subject.subName}</StyledTableCell>
                                     <StyledTableCell align="center">{subject.subCode}</StyledTableCell>
                                     <StyledTableCell align="center">
@@ -100,6 +124,13 @@ const ChooseSubject = ({ situation }) => {
                     </Table>
                 </TableContainer>
             </>
+            {situation === "Teacher" && (
+                <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 2 }}>
+                    <Button variant="contained" disabled={loader || selected.length === 0} onClick={assignSelected}>
+                        Assign Selected
+                    </Button>
+                </Box>
+            )}
         </Paper >
     );
 };

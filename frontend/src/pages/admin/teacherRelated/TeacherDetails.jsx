@@ -20,7 +20,7 @@ const TeacherDetails = () => {
         console.log(error);
     }
 
-    const isSubjectNamePresent = teacherDetails?.teachSubject?.subName;
+    const subjects = teacherDetails?.teachSubjects || (teacherDetails?.teachSubject ? [teacherDetails?.teachSubject] : []);
 
     const handleAddSubject = () => {
         navigate(`/Admin/teachers/choosesubject/${teacherDetails?.teachSclass?._id}/${teacherDetails?._id}`);
@@ -41,18 +41,15 @@ const TeacherDetails = () => {
                     <Typography variant="h6" gutterBottom>
                         Class Name: {teacherDetails?.teachSclass?.sclassName}
                     </Typography>
-                    {isSubjectNamePresent ? (
+                    {subjects && subjects.length > 0 ? (
                         <>
                             <Typography variant="h6" gutterBottom>
-                                Subject Name: {teacherDetails?.teachSubject?.subName}
-                            </Typography>
-                            <Typography variant="h6" gutterBottom>
-                                Subject Sessions: {teacherDetails?.teachSubject?.sessions}
+                                Subjects: {subjects.map(s => s?.subName).filter(Boolean).join(', ')}
                             </Typography>
                         </>
                     ) : (
                         <Button variant="contained" onClick={handleAddSubject}>
-                            Add Subject
+                            Add Subject(s)
                         </Button>
                     )}
                 </Container>
