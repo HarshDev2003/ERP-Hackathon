@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components';
-import { Card, CardContent, Typography, Grid, Box, Avatar, Container, Paper } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { Card, CardContent, Typography, Grid, Box, Avatar, Container, Paper, TextField, Button } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../redux/userRelated/userHandle';
 
 const StudentProfile = () => {
+  const dispatch = useDispatch();
   const { currentUser, response, error } = useSelector((state) => state.user);
+  const [email, setEmail] = useState(currentUser?.email || '')
+  const [mobile, setMobile] = useState(currentUser?.mobile || '')
+  const [address, setAddress] = useState(currentUser?.address || '')
+  const [motherName, setMotherName] = useState(currentUser?.motherName || '')
+  const [fatherName, setFatherName] = useState(currentUser?.fatherName || '')
+
+  const save = (e) => {
+    e.preventDefault();
+    dispatch(updateUser({ email, mobile, address, motherName, fatherName }, currentUser._id, 'Student'))
+  }
 
   if (response) { console.log(response) }
   else if (error) { console.log(error) }
@@ -57,40 +69,30 @@ const StudentProfile = () => {
         <Card>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-              Personal Information
+              Complete Your Profile
             </Typography>
-            <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Date of Birth:</strong> January 1, 2000
-                </Typography>
+            <form onSubmit={save}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <TextField fullWidth label="Email" value={email} onChange={e=>setEmail(e.target.value)} />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField fullWidth label="Mobile" value={mobile} onChange={e=>setMobile(e.target.value)} />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField fullWidth label="Address" value={address} onChange={e=>setAddress(e.target.value)} />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField fullWidth label="Mother's Name" value={motherName} onChange={e=>setMotherName(e.target.value)} />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField fullWidth label="Father's Name" value={fatherName} onChange={e=>setFatherName(e.target.value)} />
+                </Grid>
+                <Grid item xs={12}>
+                  <Button type="submit" variant="contained">Save</Button>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Gender:</strong> Male
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Email:</strong> john.doe@example.com
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Phone:</strong> (123) 456-7890
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Address:</strong> 123 Main Street, City, Country
-                </Typography>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <Typography variant="subtitle1" component="p">
-                  <strong>Emergency Contact:</strong> (987) 654-3210
-                </Typography>
-              </Grid>
-            </Grid>
+            </form>
           </CardContent>
         </Card>
       </Container>

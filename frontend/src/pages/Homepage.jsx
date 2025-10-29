@@ -38,21 +38,12 @@ const Homepage = () => {
                                     Login
                                 </LightPurpleButton>
                             </StyledLink>
-                            <StyledLink to="/chooseasguest">
-                                <GuestButton 
-                                    variant="outlined" 
-                                    fullWidth
-                                    startIcon={<Login />}
-                                >
-                                    Login as Guest
-                                </GuestButton>
-                            </StyledLink>
+                            {/* Guest login removed */}
                             <SignUpText>
-                                Don't have an account?{' '}
-                                <SignUpLink to="/Adminregister">
-                                    <HowToReg sx={{ fontSize: 18, verticalAlign: 'middle', mr: 0.5 }} />
-                                    Sign up
-                                </SignUpLink>
+                                Admin? <SignUpLink to="/Adminregister"><HowToReg sx={{ fontSize: 18, verticalAlign: 'middle', mr: 0.5 }} />Sign up</SignUpLink>
+                            </SignUpText>
+                            <SignUpText>
+                                Student? <SignUpLink to="/Studentregister"><HowToReg sx={{ fontSize: 18, verticalAlign: 'middle', mr: 0.5 }} />Register</SignUpLink>
                             </SignUpText>
                         </StyledBox>
                     </StyledPaper>

@@ -33,6 +33,7 @@ const mainItems = [
     { text: 'Subjects', to: '/Admin/subjects', icon: <AssignmentIcon /> },
     { text: 'Teachers', to: '/Admin/teachers', icon: <SupervisorAccountOutlinedIcon /> },
     { text: 'Students', to: '/Admin/students', icon: <PersonOutlineIcon /> },
+    { text: 'Registrations', to: '/Admin/registrations', icon: <PersonOutlineIcon /> },
     { text: 'Notices', to: '/Admin/notices', icon: <AnnouncementOutlinedIcon /> },
     { text: 'Complains', to: '/Admin/complains', icon: <ReportIcon /> },
 ];

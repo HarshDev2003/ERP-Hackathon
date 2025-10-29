@@ -43,6 +43,13 @@ router.get("/Admin/:id", getAdminDetail)
 router.post('/StudentReg', studentRegister);
 router.post('/StudentLogin', studentLogIn)
 
+// Student Applications (registration requests)
+const { createApplication, listPendingApplications, approveApplication, rejectApplication } = require('../controllers/student_application_controller.js');
+router.post('/StudentApplication', createApplication);
+router.get('/StudentApplications', listPendingApplications);
+router.put('/StudentApplication/approve/:id', approveApplication);
+router.put('/StudentApplication/reject/:id', rejectApplication);
+
 router.get("/Students/:id", getStudents)
 router.get("/Student/:id", getStudentDetail)
 

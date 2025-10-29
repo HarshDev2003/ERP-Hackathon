@@ -53,6 +53,7 @@ import AddHostel from './hostelRelated/AddHostel';
 
 import ShowExams from './examRelated/ShowExams';
 import AddExam from './examRelated/AddExam';
+import PendingRegistrations from './studentRelated/PendingRegistrations';
 
 import AccountMenu from '../../components/AccountMenu';
 
@@ -166,6 +167,9 @@ const AdminDashboard = () => {
                         {/* Exams */}
                         <Route path="/Admin/exams" element={<ShowExams />} />
                         <Route path="/Admin/exams/add" element={<AddExam />} />
+
+                        {/* Pending Student Registrations */}
+                        <Route path="/Admin/registrations" element={<PendingRegistrations />} />
 
                         <Route path="/logout" element={<Logout />} />
                     </Routes>

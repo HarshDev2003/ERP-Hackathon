@@ -27,6 +27,11 @@ const studentSchema = new mongoose.Schema({
         type: String,
         default: "Student"
     },
+    email: { type: String },
+    mobile: { type: String },
+    address: { type: String },
+    motherName: { type: String },
+    fatherName: { type: String },
     examResult: [
         {
             subName: {
