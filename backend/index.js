@@ -23,6 +23,10 @@ mongoose
 
 app.use('/', Routes);
 
+app.get('/test', (res, req)=>{
+    res.send("Testing");
+})
+
 app.listen(PORT, () => {
     console.log(`Server started at port no. ${PORT}`)
 })
